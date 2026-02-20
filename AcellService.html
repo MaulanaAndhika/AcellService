@@ -1,0 +1,1103 @@
+<!-- Acell Service - Single Page Website -->
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Acell Service | IT Solutions </title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#00c853",
+                        "primary-dark": "#00a844",
+                        "primary-glow": "#00ff6a",
+                        "background-light": "#f0f2f0",
+                        "background-dark": "#050505",
+                        "surface-dark": "#0d0d0d",
+                        "surface-card": "#111111",
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"],
+                        "heading": ["Playfair Display", "serif"],
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.375rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "2xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glow-sm": "0 0 15px rgba(0, 200, 83, 0.2)",
+                        "glow": "0 0 30px rgba(0, 200, 83, 0.25)",
+                        "glow-lg": "0 0 60px rgba(0, 200, 83, 0.3)",
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        :root {
+            --green: #00c853;
+            --green-glow: rgba(0, 200, 83, 0.25);
+        }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #050505;
+        }
+        /* Premium heading font */
+        h1, h2 { font-family: 'Playfair Display', serif; }
+
+        /* Noise texture overlay for luxury feel */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.4;
+        }
+
+        /* Glassmorphism cards */
+        .service-card {
+            background: rgba(255,255,255,0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 200, 83, 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            background: rgba(0, 200, 83, 0.05);
+            box-shadow: 0 0 40px rgba(0, 200, 83, 0.2), 0 20px 60px rgba(0,0,0,0.5);
+            border-color: rgba(0, 200, 83, 0.35);
+            transform: translateY(-4px);
+        }
+
+        /* Navbar glass */
+        .navbar-glass {
+            background: rgba(5, 5, 5, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 200, 83, 0.12);
+        }
+
+        /* Green glow text */
+        .text-glow {
+            text-shadow: 0 0 30px rgba(0, 200, 83, 0.5), 0 0 60px rgba(0, 200, 83, 0.2);
+        }
+
+        /* Premium button */
+        .btn-primary {
+            background: linear-gradient(135deg, #00c853 0%, #00a844 100%);
+            box-shadow: 0 4px 20px rgba(0, 200, 83, 0.35);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-primary:hover {
+            box-shadow: 0 6px 30px rgba(0, 200, 83, 0.5);
+            transform: translateY(-2px);
+        }
+        .btn-primary:hover::after { opacity: 1; }
+
+        /* Outline button */
+        .btn-outline {
+            border: 1px solid rgba(0, 200, 83, 0.5);
+            color: #00c853;
+            transition: all 0.3s ease;
+            background: transparent;
+        }
+        .btn-outline:hover {
+            background: rgba(0, 200, 83, 0.08);
+            border-color: #00c853;
+            box-shadow: 0 0 20px rgba(0, 200, 83, 0.2);
+        }
+
+        /* Gradient divider */
+        .divider-glow {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,200,83,0.4), transparent);
+        }
+
+        /* Section label */
+        .section-label {
+            letter-spacing: 0.3em;
+            font-size: 0.65rem;
+            color: #00c853;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        /* Contact form inputs */
+        .form-input-focus:focus {
+            border-color: #00c853;
+            box-shadow: 0 0 0 2px rgba(0, 200, 83, 0.15);
+            outline: none;
+        }
+
+        /* Ambient glow background blobs */
+        .glow-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.07;
+            pointer-events: none;
+        }
+
+        /* Stat counter card */
+        .stat-card {
+            border-left: 2px solid rgba(0, 200, 83, 0.4);
+            padding-left: 1.5rem;
+        }
+
+        /* Team card hover */
+        .team-card img { transition: all 0.5s ease; }
+        .team-card:hover img { transform: scale(1.05); filter: grayscale(0%) !important; }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #050505; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,200,83,0.3); border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0,200,83,0.6); }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-display transition-colors duration-300">
+
+<!-- ============================================================ -->
+<!-- Header / Navigation -->
+<!-- ============================================================ -->
+<header class="navbar-glass sticky top-0 z-50 w-full">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-glow-sm">
+<span class="material-icons text-white text-lg">smartphone</span>
+</div>
+<span class="text-xl font-bold tracking-widest text-white uppercase">ACELL<span class="text-primary">SERVICE</span></span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-all duration-300 hover:tracking-wider" href="#home">Home</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-all duration-300 hover:tracking-wider" href="#services">Services</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-all duration-300 hover:tracking-wider" href="#about">About</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-all duration-300 hover:tracking-wider" href="#contact">Contact</a>
+<a class="btn-primary text-white px-6 py-2.5 rounded-xl font-semibold text-sm" href="#contact">Book Repair</a>
+</nav>
+<button class="md:hidden p-2 rounded-lg text-slate-400 hover:text-primary hover:bg-primary/10 transition-colors" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+<span class="material-icons">menu</span>
+</button>
+</div>
+<div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-primary/10 mt-2 pt-4">
+<div class="flex flex-col gap-3">
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors py-2" href="#home">Home</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors py-2" href="#services">Services</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors py-2" href="#about">About</a>
+<a class="text-sm font-medium text-slate-400 hover:text-primary transition-colors py-2" href="#contact">Contact</a>
+<a class="btn-primary text-white px-5 py-2.5 rounded-xl font-semibold text-sm text-center block" href="#contact">Book Repair</a>
+</div>
+</div>
+</div>
+</header>
+
+<!-- ============================================================ -->
+<!-- SECTION 1: HOME / HERO -->
+<!-- ============================================================ -->
+<section id="home" class="relative min-h-[90vh] flex items-center overflow-hidden">
+<!-- Electric Lightning Canvas -->
+<canvas id="electricCanvas" class="absolute inset-0 w-full h-full" style="z-index:0; pointer-events:none;"></canvas>
+<!-- Ambient glow blobs -->
+<div class="glow-blob w-[600px] h-[600px] bg-primary top-[-100px] right-[-100px]"></div>
+<div class="glow-blob w-[400px] h-[400px] bg-primary bottom-[-50px] left-[-100px]"></div>
+<!-- Subtle grid pattern -->
+<div class="absolute inset-0" style="z-index:1; pointer-events:none; background-image: linear-gradient(rgba(0,200,83,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,200,83,0.03) 1px, transparent 1px); background-size: 60px 60px;"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24 w-full" style="position:relative; z-index:2;">
+<div class="inline-flex items-center gap-2 bg-primary/10 border border-primary/20 px-4 py-2 rounded-full mb-8">
+<span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+<span class="text-xs font-semibold text-primary uppercase tracking-widest">Now Accepting Walk-ins</span>
+</div>
+<h1 class="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
+    HP kamu rusak? <br/><span class="text-primary text-glow">#IngatServiceIngatACELL</span>
+</h1>
+<p class="text-lg text-slate-400 max-w-2xl mx-auto mb-12 leading-relaxed">
+    Acell Service provides professional mobile phone and Laptop repairs with premium parts and certified technicians. From cracked screens to complex software issues, we restore your device to factory standards.
+</p>
+<div class="flex justify-center gap-4 flex-wrap mb-14">
+<div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+<span class="material-icons text-primary text-sm">verified</span>
+<span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Certified Technicians</span>
+</div>
+<div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+<span class="material-icons text-primary text-sm">security</span>
+<span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">30-Day Warranty</span>
+</div>
+<div class="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full border border-white/10">
+<span class="material-icons text-primary text-sm">bolt</span>
+<span class="text-xs font-semibold text-slate-300 uppercase tracking-wider">Express Service</span>
+</div>
+</div>
+<div class="flex justify-center gap-4 flex-wrap">
+<a href="#services" class="btn-primary text-white px-8 py-4 rounded-xl font-bold text-base">View Our Services</a>
+<a href="#contact" class="btn-outline px-8 py-4 rounded-xl font-bold text-base">Book Appointment</a>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 2: SERVICES -->
+<!-- ============================================================ -->
+<section id="services" class="py-24 relative" style="background: #080808;">
+<div class="divider-glow mb-0"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<span class="section-label">What We Do</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mt-4 mb-4">Kita bisa bantu apasi buat kamu?</h2>
+<p class="text-lg text-slate-500 max-w-2xl mx-auto">
+                    Professional repair solutions for all major brands. Fast turnaround, genuine parts, and certified technicians.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+<!-- Screen Repair -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Cracked screen repair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe98br3wmuHbncWJ2SgcXaolgSy6NyN10-xBKl2pb-lSRjb5pXrTzP1yFQWZ2_dAgAAqERmgBbWwiDXcbNc0vABANKFenTvX4KJfj7YMe9KIhlkfs7pT7J5RtxdR3vwo_RbIugqkdp6ucJIIt_tk5E5x6tzOnPZXzC33IQkDeWIh4L9dfPkqh5u9zsaVbVe8iUQtfRKzJA_tuTEcPcRMSFzvf4fFx_FdH2JeSMIevvMArBwYl3r0yhn6gJ5-vMSzf3XnWsQLXAmNJC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+<div class="absolute bottom-4 left-4">
+<span class="bg-primary text-white text-[10px] font-bold px-2 py-1 rounded uppercase">Most Popular</span>
+</div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Screen Repair</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Glass, LCD &amp; OLED replacement</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">vibration</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Specialized repair for all major brands using original quality displays. We fix touch issues, dead pixels, and shattered glass.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">From $79</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold dark:text-white">30-60 Min</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Battery Replacement -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Smartphone battery replacement" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuALaLrZfoIC9RDPv0gOOlCyYiwqkeFSlT1rbCIhVmbiyMBKr2L8BbMBNP8W_mLlMxo0eiAuDtc6rQnsCkcgE7G3UaBIT_Dz2gEeI0d_Px6xCiQzSk4Dy4DEROXieYj6g9PLTC33OUlWSwlSPMrOQLyzDMy-RGFAS5GWx9lccBk9rxnnt0h1n7TPjkU_4B-JQfUipJwld1HGYKRkLXTe9HMHSOhFoQReh6R9ZBWurMNbm1NPuwEf2ZFfBaDLzC2ydEDMKeXSGWD1UdCM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Battery Service</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Health &amp; capacity restoration</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">battery_charging_full</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Genuine battery replacements for devices that overheat, drain quickly, or won't hold a charge. Includes performance calibration.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">From $45</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold dark:text-white">20-40 Min</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Charging Port -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Charging port repair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_b18azpRdxLolZ35-fO-5oM1uErUoNokzzqLv_g46MjUIU7b9L2-U2-i6UdRPDAZgeg_8NlVF33CBPUdAfnIIlb8OZ3XevB3R005ZogyebCEWgYnwbBr9Si8Iw74UBK_mwp6q3zJI4LSbFOxcat3rxaXBRv9mwnNMOECPvWY4hPM70Ht7belHpJaVOiaAg-iN6Asax2CxexE680IGHZXn96KvQIEvpMc9WmF6em31wXVIRnwNr05gmGfhgckQl_KMgcXR7dGCSpqR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Charging Port</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Connectivity &amp; Power issues</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">usb</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Fixing loose connections, broken pins, or moisture damage in charging ports. We also clean ports for better connectivity.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">From $55</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold dark:text-white">45-90 Min</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Camera Repair -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Camera lens repair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXWxZvEjO4zmTAR34ZikrNhtfNu4umuj4utl4yhbRpqLjme7MwjRWX4-3eUVztPj1Yy79y9kc3iRvkWjaD97BPvNc7vWeA2mhJmRjV4PyfbwRyt50_prdXqnKS-XDtEI6XkflShppgV_KevKcHfbKADM_WY3-sQq9uhCz2AFaEwB22clC4DyJSg0sEZJ_9H7EM2wte3h54pQBMPNZyg01iA2dY74xP3ktdSR0ReKMcgZaRT1KV1SjdLdxbeis525rcdSY01CYq4PF_"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Camera Repair</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Lens &amp; Sensor replacement</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">photo_camera</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Repairing blurry focus, cracked external glass, or black-screen camera modules to restore crystal clear photography.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">From $60</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold dark:text-white">60-120 Min</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Software Solutions -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Phone software update" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB75NSvXPCBB1zVVERsDtKovQ5T2VMobaz6WYQEtHbj5z5gNB2xrpzt-O_xbmXtVv0xuHxWLDdhlr85e17YsAyhLqOvPRg05VZBefIuev190XqAqf5ykOJiPBT04QLrgd6yiaboesCAXj5nOvj1sLmt2wIdK_xVD8G_8mGo6c-Blkys56yFB0c3BIeqjAiT0Rz3Ivgc2nfL3y1bcmvDu0f9B5BGUxkhoe6Ox-joHzoq7bF64GDMFKhVxK9UoIlLneiSMtu6B3e7wHWC"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Software Services</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">OS, Recovery &amp; Unlocking</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">code</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Solving boot loops, system crashes, and performing data recovery. We also provide secure device unlocking and OS flashing.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">From $35</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold dark:text-white">1-2 Hours</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+<!-- Motherboard Repair -->
+<div class="service-card group rounded-2xl overflow-hidden flex flex-col">
+<div class="h-48 overflow-hidden relative">
+<img alt="Micro-soldering repair" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ0K5I9VdpwEkeIYOFhuCAL2ie3UTEWMwNJ8MK6F44rDf0bgW9HHHFG21J07-bMkKPBcbYzVS4H6b-uF1JJPXG3Rthx0D3OYkt3wBZBne8bkUixs9nk0cRxuNB9vipeiuswwk2G5beWkiOTslbOHxoy8QMtoi2E7SH93V9fYMBjxCitHmNRyT3m2apNnDQXHzBk7xc6lShzXoXDumQvAbVMlsvpFrbudOwpHHh80FLnrcMiYvnoVPZN3I6sNxe--dxkNeDOrKFDty8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 flex-grow flex flex-col">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h3 class="text-xl font-bold text-white">Motherboard Repair</h3>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1">Advanced Micro-soldering</p>
+</div>
+<div class="w-10 h-10 bg-primary/20 rounded-lg flex items-center justify-center text-primary">
+<span class="material-icons">memory</span>
+</div>
+</div>
+<p class="text-sm text-slate-500 dark:text-slate-400 mb-6 flex-grow">
+                        Complex component-level repairs including IC replacement, water damage treatment, and power management issues.
+                    </p>
+<div class="grid grid-cols-2 gap-4 mb-6 border-y border-white/5 py-4">
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Est. Price</p>
+<p class="text-lg font-bold text-primary">Quote Only</p>
+</div>
+<div>
+<p class="text-[10px] uppercase text-slate-500 font-bold mb-1">Duration</p>
+<p class="text-lg font-bold text-white">1-3 Days</p>
+</div>
+</div>
+<button class="w-full btn-primary text-white py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
+                        Consult Now <span class="material-icons text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 3: ABOUT -->
+<!-- ============================================================ -->
+<section id="about" class="py-24 overflow-hidden" style="background: #050505;">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1">
+<span class="text-primary font-bold tracking-widest uppercase text-xs">Kita hadir</span>
+<h2 class="text-5xl font-extrabold mt-4 mb-8 leading-tight">ACELL Solution! <br/><span class="text-primary">Since 2022.</span></h2>
+<p class="text-slate-400 text-lg leading-relaxed mb-6">
+                        Acell Service began as a small workshop with a single vision: to provide high-precision repairs for the devices that keep us connected to the world. What started as a passion for micro-electronics has evolved into a premier destination for mobile technology restoration.
+                    </p>
+<p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        Over the last decade, we have successfully repaired over 50,000 devices, maintaining a commitment to using only authentic parts and the latest diagnostic technology. Our journey is built on trust, precision, and the relentless pursuit of technical excellence.
+                    </p>
+<div class="flex gap-12">
+<div>
+<div class="text-3xl font-bold text-primary">4+</div>
+<div class="text-sm text-slate-500 uppercase tracking-wide mt-1">Years Experience</div>
+</div>
+<div>
+<div class="text-3xl font-bold text-primary">1000+</div>
+<div class="text-sm text-slate-500 uppercase tracking-wide mt-1">Devices Fixed</div>
+</div>
+<div>
+<div class="text-3xl font-bold text-primary">95%</div>
+<div class="text-sm text-slate-500 uppercase tracking-wide mt-1">Success Rate</div>
+</div>
+</div>
+</div>
+<div class="order-1 lg:order-2 relative">
+<div class="absolute -inset-4 bg-primary/10 rounded-xl blur-2xl"></div>
+<img alt="Technician working on a phone" class="relative rounded-xl object-cover w-full h-[500px] shadow-2xl border border-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVltnrzm8pzDwye5Rkeq023xomTe16FnHwo68xfTCnnwOaSX7EWcZ2MC6Mp5ZoyqBa7KuF-_BF8Kj2jFoRiGeQso_puucyADvfCwzlTwZNFlkUlB4XItD9Ni3XZ5QOmlm7zr6vOvuWOLwKEZRlS7rg7IKIcIAp5LO-eWkLVD18fbHh1g60F0pYNsuttTGWjuwWBTVUhnXgTkP9h9b2yel9fbpHJD8esJz_4Sl2xZSavlo1U1syOpXxGcvHe8ywY5faHWIRT6X75YpO"/>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Vision & Mission -->
+<section class="py-24" style="background: #080808;">
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center max-w-3xl mx-auto mb-16">
+<h2 class="text-3xl font-bold mb-4">Core Values &amp; Purpose</h2>
+<p class="text-slate-600 dark:text-slate-400">Our foundation is built on principles that prioritize the longevity of your technology and the satisfaction of our clients.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8">
+<!-- Mission Card -->
+<div class="bg-background-light dark:bg-background-dark p-10 rounded-xl border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-8 group-hover:bg-primary/30 transition-colors">
+<span class="material-icons text-primary text-3xl">rocket_launch</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Our Mission</h3>
+<p class="text-slate-400 text-lg leading-relaxed">
+                        To provide precision repairs, authentic parts, and exceptional customer service with every device. We aim to reduce electronic waste by extending the lifecycle of mobile technology through expert craftsmanship and technical innovation.
+                    </p>
+</div>
+<!-- Vision Card -->
+<div class="bg-background-light dark:bg-background-dark p-10 rounded-xl border border-primary/10 hover:border-primary/40 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-xl flex items-center justify-center mb-8 group-hover:bg-primary/30 transition-colors">
+<span class="material-icons text-primary text-3xl">visibility</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Our Vision</h3>
+<p class="text-slate-400 text-lg leading-relaxed">
+                        To be the most trusted name in mobile technology restoration worldwide. We envision a future where high-quality repair services are accessible, transparent, and the first choice for every tech user before considering a replacement.
+                    </p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Team Section -->
+<section class="py-24" style="background: #050505;">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+<div class="max-w-2xl">
+<span class="text-primary font-bold tracking-widest uppercase text-xs">The Experts</span>
+<h2 class="text-4xl font-bold mt-4">Meet Our Lead Technicians</h2>
+<p class="text-slate-400 mt-4">Our team consists of certified engineers and specialists dedicated to the art of device restoration.</p>
+</div>
+<div class="hidden md:block">
+<div class="flex items-center gap-2 bg-primary/10 px-4 py-2 rounded-full border border-primary/20">
+<span class="material-icons text-primary text-sm">verified</span>
+<span class="text-xs font-bold text-primary uppercase">Certified Professionals</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Team Member 1 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4">
+<img alt="Lead Hardware Specialist" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGhHtYD_vtHx-G5rV75qyZjpMm971rX5NNsIcHVUBrmUslRDy_9SoYiom-28Od-7YKnQdDDRRJazpGrpz4PF_fbWgFwxdO95J61l641ox4vuZxcKA1Pen3JPZJABaoSuTxkJ1fpnNxItmtouawCUcjtUMqD9i_pOVONsFUPIc19T9mbDAo8pXTAcDDDI-0RFwM1PBFrA5pfppolDiU0SKyE9dgES5WWwfqUnFboaXxsB_AKHTPjuf3tYFb5-V1oiwcfHF-vEBSmsIO"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<div class="flex gap-3">
+<a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-icons text-sm text-white">share</span>
+</a>
+</div>
+</div>
+</div>
+<h4 class="text-xl font-bold">Andhika Bagaskara</h4>
+<p class="text-primary font-medium text-sm">CEO & IT Specialist</p>
+<p class="text-slate-500 text-sm mt-2 italic">Specialist in micro-soldering and logic board restoration.</p>
+</div>
+<!-- Team Member 2 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4">
+<img alt="Software Expert" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCC8UZcJbOo_C8XqzAemTCyXOZRIA2hiUkYpTKPVP8l_eVf1fyoHb8Qzdd2FuvcJ69i6MxYkcPr8rIzEEIgAbbghaHPjBWqBtNBHLJgw_etOA8QfgJKrcXg11gjwJitN8waD0QQ6TJcH1idhtfALsomE1U7FOvIEKlV01QH5rYC3UcIOX8r1Ves5AgD7ozUhwE3LY4yeDpulM9Et5FDJmOP5uSCkUtQjp_IB5kKQ2ycJf7Q8rWmXji_Als9PCCJRHEWS9fYf9xoVWLR"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<div class="flex gap-3">
+<a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-icons text-sm text-white">share</span>
+</a>
+</div>
+</div>
+</div>
+<h4 class="text-xl font-bold">Faradina Rara</h4>
+<p class="text-primary font-medium text-sm">Admin & Frontdesk</p>
+<p class="text-slate-500 text-sm mt-2 italic">OS recovery, data retrieval, and security protocols expert.</p>
+</div>
+<!-- Team Member 3 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4">
+<img alt="Screen Specialist" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBUEdv5cHAn6SdX_fFdJNAiJsNcmZpmhUGL_5GEZIgpWSsXaUY5DgJt8r-oyfchabq5yKenYP4Iz3Gv8SXqsO-njDifs2g7E4C2ZJoC7gd7Y7t9ZYGJTqghCgnCJUQ8XE7_BdYGvTIAiupYR1HFBn0XQ5PvLGOIZuze5eTUb2VxlbDo4qtZQRgL2Z6WfrPBAh2xQ4cwkZzqIChmzkpgy61w0U6jVme1ysj2yC-HfxRhD7GymP56CpZyGYra8E7mYbOvJaTapYrsxG7j"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<div class="flex gap-3">
+<a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-icons text-sm text-white">share</span>
+</a>
+</div>
+</div>
+</div>
+<h4 class="text-xl font-bold">Cilik</h4>
+<p class="text-primary font-medium text-sm">Staff marketing</p>
+<p class="text-slate-500 text-sm mt-2 italic">Ensuring every repair meets our 50-point quality checklist.</p>
+</div>
+<!-- Team Member 4 -->
+<div class="group">
+<div class="relative overflow-hidden rounded-xl mb-4">
+<img alt="Diagnostics Lead" class="w-full h-80 object-cover grayscale group-hover:grayscale-0 transition-all duration-500 scale-105 group-hover:scale-100" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZIpjPxfuKXoYzGlhfwRe-A1d5QaOq5ZnsJP4lm7CKusNbgXX_n7iMKsgxW2ua5919LJGrKFAWIKTmCzNemGLEhVoAj_iUu0mGqOiUu0nQEm21BCHuJcttNaXw6C-HxbUFlyWW9EepSn5lF4TRTUYn8KVvpNC_kQngySnYlAKjfSxrG6LxzhbteFlYOs3DiQfvejvIf1rzdwZHKAKc0tMdahqbJhhx4Q9IzgDOP-gIEcJSHIlmIUID72IPbtmbL5NyL3g1f9hrMEEX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-6">
+<div class="flex gap-3">
+<a class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-icons text-sm text-white">share</span>
+</a>
+</div>
+</div>
+</div>
+<h4 class="text-xl font-bold">Jimbim</h4>
+<p class="text-primary font-medium text-sm">Staff IT Engineer</p>
+<p class="text-slate-500 text-sm mt-2 italic">Expert in rapid fault detection and systemic performance testing.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- SECTION 4: CONTACT -->
+<!-- ============================================================ -->
+<section id="contact" class="py-24 relative" style="background: #080808;">
+<div class="divider-glow"></div>
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<span class="section-label">Get In Touch</span>
+<h2 class="text-4xl md:text-5xl font-extrabold text-white mt-4 mb-4">Contact Us</h2>
+<p class="text-lg text-slate-500 max-w-2xl mx-auto">
+                Expert mobile repairs at your convenience. Drop us a message or find us on the map for quick service.
+            </p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+<!-- Left Column: Contact Form -->
+<div class="bg-white/3 backdrop-blur-sm p-8 rounded-2xl border border-primary/10 shadow-glow-sm">
+<h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-icons text-primary">mail</span>
+                    Send a Message
+                </h3>
+<form action="#" class="space-y-6" method="POST">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="name">Full Name</label>
+<input class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-primary/20 rounded-lg px-4 py-3 text-slate-900 dark:text-white form-input-focus outline-none transition-all" id="name" name="name" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="email">Email Address</label>
+<input class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-primary/20 rounded-lg px-4 py-3 text-slate-900 dark:text-white form-input-focus outline-none transition-all" id="email" name="email" placeholder="john@example.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="phone">Phone Number (Optional)</label>
+<input class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-primary/20 rounded-lg px-4 py-3 text-slate-900 dark:text-white form-input-focus outline-none transition-all" id="phone" name="phone" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="subject">Subject</label>
+<select class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-primary/20 rounded-lg px-4 py-3 text-slate-900 dark:text-white form-input-focus outline-none transition-all appearance-none" id="subject" name="subject">
+<option value="repair">Screen Repair</option>
+<option value="battery">Battery Replacement</option>
+<option value="water">Water Damage</option>
+<option value="other">Other Inquiry</option>
+</select>
+</div>
+<div>
+<label class="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2" for="message">Your Message</label>
+<textarea class="w-full bg-slate-50 dark:bg-background-dark/50 border border-slate-200 dark:border-primary/20 rounded-lg px-4 py-3 text-slate-900 dark:text-white form-input-focus outline-none transition-all resize-none" id="message" name="message" placeholder="Tell us about your device issue..." rows="5"></textarea>
+</div>
+<button class="w-full bg-primary text-white py-4 rounded-lg font-bold text-lg hover:brightness-110 transition-all shadow-lg shadow-primary/30 flex justify-center items-center gap-2" type="submit">
+                        Send Message
+                        <span class="material-icons text-sm">send</span>
+</button>
+</form>
+</div>
+<!-- Right Column: Info & Map -->
+<div class="space-y-8">
+<!-- Contact Details Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="p-6 bg-white dark:bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-lg">
+<span class="material-icons text-primary">location_on</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Our Location</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">Manyar Sabrangan 5/56<br/>Surabaya, 60122</p>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-lg">
+<span class="material-icons text-primary">call</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Call Us</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">+6285604493782 <br>WA Andhika<br/></p>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-lg">
+<span class="material-icons text-primary">alternate_email</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Email Us</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">andhikacellsurabaya<br>@gmail.com</p>
+</div>
+</div>
+<div class="p-6 bg-white dark:bg-primary/5 rounded-xl border border-primary/10 flex items-start gap-4">
+<div class="bg-primary/10 p-3 rounded-lg">
+<span class="material-icons text-primary">schedule</span>
+</div>
+<div>
+<h4 class="font-bold text-slate-900 dark:text-white">Business Hours</h4>
+<p class="text-sm text-slate-600 dark:text-slate-400">Sel-Jum   : 17.00-21.00<br/>Sab-Ming : 10.00-23.00</p>
+</div>
+</div>
+</div>
+<!-- Map Section -->
+<div class="relative overflow-hidden rounded-xl border border-primary/20 aspect-video lg:aspect-square max-h-[500px] shadow-2xl">
+<div class="absolute inset-0 bg-slate-200 dark:bg-slate-800 animate-pulse"></div>
+<img class="absolute inset-0 w-full h-full object-cover grayscale brightness-50 contrast-125" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcwZEv5mEhwCcIlYicDu4sI8gGs-jBDlp6gec2wEXKJeNYoHy8ukdXf4O42aVJP-lflXxBqcZUsP-vg2VQ21ovTRwiDjfMSsGdpxUJaMTlhap96A1GnZNHcrXbwxxLx9OdFBz0cBrP9tG53OG2tCMvsVpX86Jx67PXoSy-kS5lET3ecyXY7Uo_9NG1WxhP-0V4rzQNp26DKkBRlzNf1fQTntOip77hlraQzfHu7jPbRzlZit-hADXA3-DnTDuPMdxinsLUZN2BK2m5" alt="Map location"/>
+<!-- Map Overlay UI -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="relative">
+<div class="absolute -top-12 left-1/2 -translate-x-1/2 bg-white dark:bg-background-dark px-4 py-2 rounded-lg shadow-xl border border-primary text-xs font-bold whitespace-nowrap">
+                                Acell Service HQ
+                                <div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white dark:bg-background-dark rotate-45 border-r border-b border-primary"></div>
+</div>
+<span class="material-icons text-5xl text-primary animate-bounce drop-shadow-2xl">location_on</span>
+</div>
+</div>
+<!-- Zoom Controls -->
+<div class="absolute bottom-4 right-4 flex flex-col gap-2">
+<button class="w-10 h-10 bg-white dark:bg-background-dark border border-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/10 transition-colors">
+<span class="material-icons text-sm">add</span>
+</button>
+<button class="w-10 h-10 bg-white dark:bg-background-dark border border-primary/20 rounded-lg flex items-center justify-center hover:bg-primary/10 transition-colors">
+<span class="material-icons text-sm">remove</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============================================================ -->
+<!-- FOOTER -->
+<!-- ============================================================ -->
+<footer style="background: #030303; border-top: 1px solid rgba(0,200,83,0.12);" class="py-16">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-2">
+<div class="flex items-center gap-2 mb-6">
+<div class="w-8 h-8 bg-primary rounded flex items-center justify-center">
+<span class="material-icons text-white text-sm">smartphone</span>
+</div>
+<span class="text-xl font-bold tracking-widest text-white uppercase">ACELL<span class="text-primary">SERVICE</span></span>
+</div>
+<p class="text-slate-500 mb-6 max-w-sm text-sm leading-relaxed">
+                        The most trusted mobile phone repair specialist in the city. We use state-of-the-art equipment and genuine parts to ensure your device stays in perfect condition.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-icons text-lg">facebook</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-slate-200 dark:bg-white/5 flex items-center justify-center hover:bg-primary hover:text-white transition-all" href="#">
+<span class="material-icons text-lg">language</span>
+</a>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Quick Links</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#home">Home</a></li>
+<li><a class="hover:text-primary transition-colors" href="#services">Services</a></li>
+<li><a class="hover:text-primary transition-colors" href="#about">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#contact">Contact</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Location</h4>
+<ul class="space-y-4 text-sm text-slate-500">
+<li class="flex gap-3">
+<span class="material-icons text-primary text-base">location_on</span>
+<span>123 Tech Avenue, Silicon District, San Francisco</span>
+</li>
+<li class="flex gap-3">
+<span class="material-icons text-primary text-base">phone</span>
+<span>+1 (555) 000-1234</span>
+</li>
+<li class="flex gap-3">
+<span class="material-icons text-primary text-base">schedule</span>
+<span>Mon - Sat: 9:00 - 20:00</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-xs text-slate-500 dark:text-slate-500">
+                    © 2022 Acell Service Repair Surabaya.
+                </p>
+<div class="flex gap-6 text-xs text-slate-500">
+<a class="hover:text-primary" href="#">Privacy Policy</a>
+<a class="hover:text-primary" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+
+<script>
+// ============================================================
+// Electric Lightning Animation for Home Section
+// ============================================================
+(function() {
+    const canvas = document.getElementById('electricCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const homeSection = document.getElementById('home');
+    const PRIMARY = '#00c853';
+    const PRIMARY_GLOW = 'rgba(0, 200, 83,';
+
+    function resize() {
+        canvas.width = homeSection.offsetWidth || window.innerWidth;
+        canvas.height = homeSection.offsetHeight || window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    // --- Lightning bolt generator ---
+    function createLightningPath(x1, y1, x2, y2, roughness, branches) {
+        const points = [{x: x1, y: y1}];
+        function subdivide(ax, ay, bx, by, depth) {
+            if (depth === 0) { points.push({x: bx, y: by}); return; }
+            const mx = (ax + bx) / 2 + (Math.random() - 0.5) * roughness * depth * 18;
+            const my = (ay + by) / 2 + (Math.random() - 0.5) * roughness * depth * 18;
+            subdivide(ax, ay, mx, my, depth - 1);
+            subdivide(mx, my, bx, by, depth - 1);
+        }
+        subdivide(x1, y1, x2, y2, roughness, 4);
+        return points;
+    }
+
+    function drawLightning(points, alpha, width, color) {
+        if (points.length < 2) return;
+        ctx.save();
+        ctx.globalAlpha = alpha;
+        ctx.strokeStyle = color || PRIMARY;
+        ctx.lineWidth = width;
+        ctx.shadowBlur = 18;
+        ctx.shadowColor = PRIMARY;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+        }
+        ctx.stroke();
+
+        // Inner bright core
+        ctx.globalAlpha = alpha * 0.6;
+        ctx.strokeStyle = '#ffffff';
+        ctx.lineWidth = width * 0.3;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = '#ffffff';
+        ctx.beginPath();
+        ctx.moveTo(points[0].x, points[0].y);
+        for (let i = 1; i < points.length; i++) {
+            ctx.lineTo(points[i].x, points[i].y);
+        }
+        ctx.stroke();
+        ctx.restore();
+    }
+
+    // --- Bolt objects ---
+    const bolts = [];
+
+    function spawnBolt() {
+        const w = canvas.width, h = canvas.height;
+        // Random start from edges or top
+        const side = Math.random();
+        let x1, y1, x2, y2;
+        if (side < 0.4) {
+            // Top to somewhere
+            x1 = Math.random() * w;
+            y1 = 0;
+            x2 = x1 + (Math.random() - 0.5) * 300;
+            y2 = Math.random() * h * 0.7;
+        } else if (side < 0.7) {
+            // Left edge
+            x1 = 0;
+            y1 = Math.random() * h;
+            x2 = Math.random() * w * 0.6;
+            y2 = y1 + (Math.random() - 0.5) * 250;
+        } else {
+            // Right edge
+            x1 = w;
+            y1 = Math.random() * h;
+            x2 = w - Math.random() * w * 0.6;
+            y2 = y1 + (Math.random() - 0.5) * 250;
+        }
+
+        const roughness = 0.6 + Math.random() * 0.6;
+        const mainPoints = createLightningPath(x1, y1, x2, y2, roughness, 4);
+
+        // Branches
+        const branchList = [];
+        const numBranches = Math.floor(Math.random() * 3) + 1;
+        for (let b = 0; b < numBranches; b++) {
+            const idx = Math.floor(Math.random() * (mainPoints.length - 2)) + 1;
+            const bp = mainPoints[idx];
+            const bx2 = bp.x + (Math.random() - 0.5) * 120;
+            const by2 = bp.y + Math.random() * 80;
+            branchList.push(createLightningPath(bp.x, bp.y, bx2, by2, roughness * 0.8, 3));
+        }
+
+        bolts.push({
+            main: mainPoints,
+            branches: branchList,
+            alpha: 0,
+            maxAlpha: 0.4 + Math.random() * 0.45,
+            phase: 'in', // 'in', 'hold', 'out'
+            holdFrames: Math.floor(Math.random() * 6) + 2,
+            holdCount: 0,
+            fadeSpeed: 0.06 + Math.random() * 0.05,
+            width: 1.2 + Math.random() * 1.8,
+        });
+    }
+
+    // --- Particles ---
+    const particles = [];
+    function spawnParticles(x, y) {
+        const count = Math.floor(Math.random() * 5) + 3;
+        for (let i = 0; i < count; i++) {
+            const angle = Math.random() * Math.PI * 2;
+            const speed = 0.5 + Math.random() * 2;
+            particles.push({
+                x, y,
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                alpha: 0.8,
+                radius: 1 + Math.random() * 2,
+            });
+        }
+    }
+
+    // --- Floating nodes (connection points) ---
+    const nodes = [];
+    function initNodes() {
+        nodes.length = 0;
+        const count = Math.floor(canvas.width / 120) + 3;
+        for (let i = 0; i < count; i++) {
+            nodes.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                vx: (Math.random() - 0.5) * 0.3,
+                vy: (Math.random() - 0.5) * 0.3,
+                pulse: Math.random() * Math.PI * 2,
+            });
+        }
+    }
+    initNodes();
+    window.addEventListener('resize', initNodes);
+
+    let frame = 0;
+    let nextBolt = 30;
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        frame++;
+
+        // Spawn bolts
+        if (frame >= nextBolt) {
+            spawnBolt();
+            // Occasionally spawn a second bolt simultaneously
+            if (Math.random() < 0.3) spawnBolt();
+            nextBolt = frame + Math.floor(Math.random() * 60) + 25;
+        }
+
+        // Draw & update bolts
+        for (let i = bolts.length - 1; i >= 0; i--) {
+            const b = bolts[i];
+            if (b.phase === 'in') {
+                b.alpha = Math.min(b.alpha + b.fadeSpeed * 2, b.maxAlpha);
+                if (b.alpha >= b.maxAlpha) b.phase = 'hold';
+            } else if (b.phase === 'hold') {
+                b.holdCount++;
+                // Flicker effect
+                b.alpha = b.maxAlpha * (0.7 + Math.random() * 0.3);
+                if (b.holdCount >= b.holdFrames) b.phase = 'out';
+            } else {
+                b.alpha -= b.fadeSpeed;
+                if (b.alpha <= 0) { bolts.splice(i, 1); continue; }
+            }
+
+            drawLightning(b.main, b.alpha, b.width, PRIMARY);
+            for (const br of b.branches) {
+                drawLightning(br, b.alpha * 0.6, b.width * 0.5, PRIMARY);
+            }
+
+            // Spawn particles at tip on first hold frame
+            if (b.phase === 'hold' && b.holdCount === 1) {
+                const tip = b.main[b.main.length - 1];
+                spawnParticles(tip.x, tip.y);
+            }
+        }
+
+        // Update & draw particles
+        for (let i = particles.length - 1; i >= 0; i--) {
+            const p = particles[i];
+            p.x += p.vx;
+            p.y += p.vy;
+            p.alpha -= 0.025;
+            if (p.alpha <= 0) { particles.splice(i, 1); continue; }
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.fillStyle = PRIMARY;
+            ctx.shadowBlur = 6;
+            ctx.shadowColor = PRIMARY;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // Update & draw floating nodes
+        for (const n of nodes) {
+            n.x += n.vx;
+            n.y += n.vy;
+            n.pulse += 0.04;
+            if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+            if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+            const pulseAlpha = 0.08 + Math.sin(n.pulse) * 0.05;
+            ctx.save();
+            ctx.globalAlpha = pulseAlpha;
+            ctx.fillStyle = PRIMARY;
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = PRIMARY;
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, 3, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.restore();
+        }
+
+        // Draw faint connecting lines between nearby nodes
+        ctx.save();
+        for (let a = 0; a < nodes.length; a++) {
+            for (let b = a + 1; b < nodes.length; b++) {
+                const dx = nodes[a].x - nodes[b].x;
+                const dy = nodes[a].y - nodes[b].y;
+                const dist = Math.sqrt(dx * dx + dy * dy);
+                if (dist < 200) {
+                    ctx.globalAlpha = (1 - dist / 200) * 0.06;
+                    ctx.strokeStyle = PRIMARY;
+                    ctx.lineWidth = 0.8;
+                    ctx.shadowBlur = 0;
+                    ctx.beginPath();
+                    ctx.moveTo(nodes[a].x, nodes[a].y);
+                    ctx.lineTo(nodes[b].x, nodes[b].y);
+                    ctx.stroke();
+                }
+            }
+        }
+        ctx.restore();
+
+        requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('load', function() {
+        resize();
+        initNodes();
+        animate();
+    });
+})();
+</script>
+
+</body></html>
