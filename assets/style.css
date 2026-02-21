@@ -129,4 +129,174 @@
         ::-webkit-scrollbar-track { background: #050505; }
         ::-webkit-scrollbar-thumb { background: rgba(0,200,83,0.3); border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: rgba(0,200,83,0.6); }
-    
+    /* =========================
+   Brand Ticker (Elegant)
+   ========================= */
+
+.brand-ticker{
+  background: #030303;
+  border-top: 1px solid rgba(0,200,83,0.10);
+  border-bottom: 1px solid rgba(0,200,83,0.08);
+  padding: 14px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glassy container */
+.brand-ticker__chrome{
+  max-width: 80rem;
+  margin: 0 auto;
+  padding: 10px 16px;
+  border: 1px solid rgba(0,200,83,0.12);
+  background: linear-gradient(180deg, rgba(255,255,255,0.04), rgba(255,255,255,0.015));
+  border-radius: 18px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle moving highlight (premium sheen) */
+.brand-ticker__chrome::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(0,200,83,0.08),
+    transparent
+  );
+  transform: translateX(-60%) rotate(10deg);
+  animation: tickerSheen 6s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes tickerSheen{
+  0%   { transform: translateX(-60%) rotate(10deg); }
+  100% { transform: translateX(60%)  rotate(10deg); }
+}
+
+/* Title (small, luxury) */
+.brand-ticker__title{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: rgba(255,255,255,0.75);
+  margin-bottom: 10px;
+  user-select: none;
+}
+
+.brand-ticker__dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(0,200,83,0.95);
+  box-shadow: 0 0 18px rgba(0,200,83,0.35);
+}
+
+/* Wrapper + edge fade (biar kayak news ticker) */
+.ticker-wrapper{
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+  padding: 10px 8px;
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Edge fade mask */
+.ticker-wrapper::before,
+.ticker-wrapper::after{
+  content:"";
+  position:absolute;
+  top:0; bottom:0;
+  width: 72px;
+  z-index: 2;
+  pointer-events:none;
+}
+
+.ticker-wrapper::before{
+  left:0;
+  background: linear-gradient(90deg, rgba(3,3,3,1), rgba(3,3,3,0));
+}
+
+.ticker-wrapper::after{
+  right:0;
+  background: linear-gradient(270deg, rgba(3,3,3,1), rgba(3,3,3,0));
+}
+
+/* Track */
+.ticker-track{
+  display: flex;
+  align-items: center;
+  gap: 48px;
+  width: max-content;
+  animation: tickerMove 22s linear infinite;
+  will-change: transform;
+}
+
+/* Pause on hover (elegant UX) */
+.brand-ticker:hover .ticker-track{
+  animation-play-state: paused;
+}
+
+@keyframes tickerMove{
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Logo style: subtle, uniform, premium */
+.ticker-track img{
+  height: 34px;
+  width: auto;
+  opacity: 0.70;
+  filter: grayscale(1) brightness(1.05) contrast(1.1);
+  transform: translateZ(0);
+  transition: opacity .25s ease, filter .25s ease, transform .25s ease;
+}
+
+/* On hover: “hidup”, tapi tetap classy */
+.ticker-track img:hover{
+  opacity: 1;
+  filter: grayscale(0) brightness(1.08);
+  transform: scale(1.06);
+}
+
+/* Mobile tweak */
+@media (max-width: 640px){
+  .ticker-track{ gap: 26px; animation-duration: 18s; }
+  .ticker-track img{ height: 26px; }
+  .ticker-wrapper::before,
+  .ticker-wrapper::after{ width: 44px; }
+}
+
+/* Sticky brand ticker (nempel di bawah layar) */
+/* Sticky brand ticker: transparan elegan (tanpa bikin logo ikut pudar) */
+.brand-ticker{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+
+  /* ini yang bikin transparan tapi konten tetap tajam */
+  background: rgba(3, 3, 3, 0.55);      /* atur 0.35 - 0.75 */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-top: 1px solid rgba(0, 200, 83, 0.18);
+
+  background: linear-gradient(
+    to top,
+    rgba(3,3,3,0.72),
+    rgba(3,3,3,0.40)
+  );
+}
+
+body {
+  padding-bottom: 90px; /* sesuaikan dengan tinggi ticker kamu */
+}
