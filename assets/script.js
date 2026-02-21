@@ -296,7 +296,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Bikin label subject agar lebih manusiawi (opsional)
+    // Bikin label subject agar lebih manusiawi
     const subjectLabelMap = {
       repair: "Screen Repair",
       battery: "Battery Replacement",
@@ -306,12 +306,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const subjectLabel = subjectLabelMap[subject] || subject || "-";
 
     const text =
-      `Halo Mincell, saya mau konsultasi.\n\n` +
-      `Nama: ${fullName}\n` +
-      `No HP: ${phoneNumber || "-"}\n` +
-      `Merk Handphone: ${brand || "-"}\n` +
-      `Subject: ${subjectLabel}\n\n` +
-      `Pesan:\n${message}`;
+      `Halo Mincell, mau konsultasi nih terkait kendala gadget saya.\n\n` +
+      `Nama  : ${fullName}\n` +
+      `No HP : ${phoneNumber || "-"}\n` +
+      `Merk Handphone : ${brand || "-"}\n` +
+      `Subject : ${subjectLabel}\n\n` +
+      `Pesan :\n${message}`;
 
     const waUrl = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 
