@@ -1,4 +1,7 @@
-
+html, body{
+  width: 100%;
+  overflow-x: hidden;
+}
         :root {
             --green: #00c853;
             --green-glow: rgba(0, 200, 83, 0.25);
