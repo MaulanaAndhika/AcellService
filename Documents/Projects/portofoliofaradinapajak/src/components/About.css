@@ -1,0 +1,221 @@
+.about {
+  background: var(--color-surface);
+}
+
+.about__main {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: var(--space-12);
+  align-items: start;
+}
+
+/* Profile Card */
+.about__profile-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-8);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  position: sticky;
+  top: calc(var(--navbar-height) + var(--space-6));
+}
+
+.about__profile-img {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.about__profile-img-inner {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-surface-2), var(--color-primary-light)15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid var(--color-border);
+  box-shadow: var(--shadow-primary);
+}
+
+.about__profile-badge {
+  position: absolute;
+  bottom: 5px;
+  right: 30px;
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  background: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.about__highlights {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+
+.about__highlight-item {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+  text-align: center;
+}
+
+.about__highlight-label {
+  display: block;
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+  font-weight: 500;
+  margin-bottom: var(--space-1);
+}
+
+.about__highlight-value {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.about__edu {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-4);
+  background: rgba(26, 86, 219, 0.05);
+  border: 1px solid rgba(26, 86, 219, 0.15);
+  border-radius: var(--radius-lg);
+}
+
+.about__edu-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.about__edu-degree {
+  display: block;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.3;
+  margin-bottom: var(--space-1);
+}
+
+.about__edu-inst {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 2px;
+}
+
+.about__edu-period {
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+}
+
+/* Story */
+.about__story {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.about__story-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.about__story-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.about__story-text p {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.8;
+}
+
+.about__story-text strong {
+  color: var(--color-primary);
+}
+
+/* Values */
+.about__values {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.about__value-card {
+  display: flex;
+  gap: var(--space-4);
+  align-items: flex-start;
+  padding: var(--space-5);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  transition: all var(--transition-base);
+}
+
+.about__value-card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.08);
+  transform: translateY(-2px);
+}
+
+.about__value-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-md);
+  background: rgba(26, 86, 219, 0.1);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.about__value-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+
+.about__value-desc {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about__main {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .about__main {
+    grid-template-columns: 1fr;
+  }
+  .about__profile-card {
+    position: static;
+    max-width: 480px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .about__values {
+    grid-template-columns: 1fr;
+  }
+}

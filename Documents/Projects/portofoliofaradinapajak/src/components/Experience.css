@@ -1,0 +1,207 @@
+.experience {
+  background: var(--color-surface);
+}
+
+/* Tabs */
+.exp__tabs {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-10);
+  justify-content: center;
+}
+
+.exp__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-3) var(--space-5);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  font-family: inherit;
+}
+
+.exp__tab:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.exp__tab--active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-primary);
+}
+
+.exp__tab-label {
+  display: inline;
+}
+
+.exp__tab-count {
+  min-width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: rgba(255,255,255,0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.exp__tab:not(.exp__tab--active) .exp__tab-count {
+  background: var(--color-surface-2);
+  color: var(--color-primary);
+}
+
+/* Timeline */
+.exp__timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.exp__timeline-line {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-accent));
+  opacity: 0.3;
+}
+
+.exp__timeline-item {
+  position: relative;
+  padding-left: 56px;
+  padding-bottom: var(--space-6);
+}
+
+.exp__timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.exp__timeline-dot {
+  position: absolute;
+  left: 12px;
+  top: 24px;
+  width: 18px;
+  height: 18px;
+  background: var(--color-primary);
+  border-radius: 50%;
+  border: 3px solid var(--color-surface);
+  box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.2);
+}
+
+/* Cards */
+.exp__card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-base);
+}
+
+.exp__card:hover {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+  transform: translateX(4px);
+}
+
+.exp__card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.exp__card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+.exp__card-company {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-primary);
+}
+
+.exp__card-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.exp__card-period {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-accent-dark);
+  background: rgba(245, 166, 35, 0.1);
+  border: 1px solid rgba(245, 166, 35, 0.2);
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+}
+
+.exp__card-location {
+  font-size: var(--font-size-xs);
+  color: var(--color-muted);
+}
+
+.exp__card-desc {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-bottom: var(--space-4);
+}
+
+.exp__card-desc li {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  padding-left: var(--space-4);
+  position: relative;
+}
+
+.exp__card-desc li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--color-primary);
+  font-size: 10px;
+  top: 3px;
+}
+
+.exp__card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .exp__tab-label { display: none; }
+  .exp__timeline-line { left: 15px; }
+  .exp__timeline-item { padding-left: 44px; }
+  .exp__timeline-dot { left: 7px; }
+
+  .exp__card-header {
+    flex-direction: column;
+  }
+  .exp__card-meta {
+    align-items: flex-start;
+  }
+}
